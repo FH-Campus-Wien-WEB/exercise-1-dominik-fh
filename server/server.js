@@ -1,17 +1,59 @@
-const express = require('express')
-const path = require('path')
-const app = express()
+const express = require('express');
+const path = require('path');
+const app = express();
 
 // Serve static content in directory 'files'
 app.use(express.static(path.join(__dirname, 'files')));
 
+const movies = [
+    {
+        "Title": "The Creator",
+        "Released": "2023-09-29",
+        "Runtime": 133,
+        "Genres": ["Action", "Adventure", "Drama"],
+        "Directors": ["Gareth Edwards"],
+        "Writers": ["Gareth Edwards", "Chris Weitz"],
+        "Actors": ["John David Washington", "Madeleine Yuna Voyles", "Gemma Chan"],
+        "Plot": "Against the backdrop of a war between humans and robots with artificial intelligence, a former soldier finds the robots' secret weapon to end the conflict, an AI in the form of a child.",
+        "Poster": "https://m.media-amazon.com/images/M/MV5BMDkxMTUxOTQtYzM4Yi00YzA2LTgzOTYtNDg2NTliODE0ZTRjXkEyXkFqcGc@._V1_SX300.jpg",
+        "Metascore": 63,
+        "imdbRating": 6.7,
+    },
+    {
+        "Title": "The Amazing Spider-Man",
+        "Released": "2012-07-03",
+        "Runtime": 136,
+        "Genres": ["Action", "Sci-Fi"],
+        "Directors": ["Marc Webb"],
+        "Writers": ["James Vanderbilt", "Alvin Sargent", "Steve Kloves"],
+        "Actors": ["Andrew Garfield", "Emma Stone", "Rhys Ifans"],
+        "Plot": "After Peter Parker is bitten by a genetically altered spider, he gains newfound, spider-like powers and ventures out to save the city from the machinations of a mysterious reptilian foe.",
+        "Poster": "https://m.media-amazon.com/images/M/MV5BMjMyOTM4MDMxNV5BMl5BanBnXkFtZTcwNjIyNzExOA@@._V1_SX300.jpg",
+        "Metascore": 66,
+        "imdbRating": 6.9,
+    },
+    {
+        "Title": "Cars",
+        "Released": "2006-06-09",
+        "Runtime": 116,
+        "Genres": ["Animation", "Adventure", "Comedy"],
+        "Directors": ["John Lasseter", "Joe Ranft"],
+        "Writers": ["Dan Fogelman", "John Lasseter", "Joe Ranft"],
+        "Actors": ["Owen Wilson", "Bonnie Hunt", "Paul Newman"],
+        "Plot": "On the way to the biggest race of his life, a hotshot rookie race car gets stranded in a rundown town and learns that winning isn't everything in life.",
+        "Poster": "https://m.media-amazon.com/images/M/MV5BMTg5NzY0MzA2MV5BMl5BanBnXkFtZTYwNDc3NTc2._V1_SX300.jpg",
+        "Metascore": 73,
+        "imdbRating": 7.3,
+    }
+];
+
 // Configure a 'get' endpoint for data..
 app.get('/movies', function (req, res) {
-  // Part 1: Remove the next line and replace with your code
-  res.send('!dlrow olleH')
-})
+    // Part 1: Remove the next line and replace with your code
+    res.send(movies);
+});
 
-app.listen(3000)
+app.listen(3000);
 
-console.log("Server now listening on http://localhost:3000/")
+console.log("Server now listening on http://localhost:3000/");
 
