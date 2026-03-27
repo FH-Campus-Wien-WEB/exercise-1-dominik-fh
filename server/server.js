@@ -17,7 +17,7 @@ const movies = [
         "Plot": "Against the backdrop of a war between humans and robots with artificial intelligence, a former soldier finds the robots' secret weapon to end the conflict, an AI in the form of a child.",
         "Poster": "https://m.media-amazon.com/images/M/MV5BMDkxMTUxOTQtYzM4Yi00YzA2LTgzOTYtNDg2NTliODE0ZTRjXkEyXkFqcGc@._V1_SX300.jpg",
         "Metascore": 63,
-        "imdbRating": 6.7,
+        "imdbRating": 6.7
     },
     {
         "Title": "The Amazing Spider-Man",
@@ -30,7 +30,7 @@ const movies = [
         "Plot": "After Peter Parker is bitten by a genetically altered spider, he gains newfound, spider-like powers and ventures out to save the city from the machinations of a mysterious reptilian foe.",
         "Poster": "https://m.media-amazon.com/images/M/MV5BMjMyOTM4MDMxNV5BMl5BanBnXkFtZTcwNjIyNzExOA@@._V1_SX300.jpg",
         "Metascore": 66,
-        "imdbRating": 6.9,
+        "imdbRating": 6.9
     },
     {
         "Title": "Cars",
@@ -43,9 +43,9 @@ const movies = [
         "Plot": "On the way to the biggest race of his life, a hotshot rookie race car gets stranded in a rundown town and learns that winning isn't everything in life.",
         "Poster": "https://m.media-amazon.com/images/M/MV5BMTg5NzY0MzA2MV5BMl5BanBnXkFtZTYwNDc3NTc2._V1_SX300.jpg",
         "Metascore": 73,
-        "imdbRating": 7.3,
+        "imdbRating": 7.3
     }
-];
+]
 
 // Configure a 'get' endpoint for data..
 app.get('/movies', function (req, res) {
