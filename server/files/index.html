@@ -22,45 +22,36 @@
             padding: 20px 20px 20px 20px;
         }
 
-        h1 {
-
-        }
-
         .poster {
             box-shadow: slategray 0 0 2px 2px;
         }
-
-        ul {
-        }
     </style>
     <script>
-        const convertMonthToString = (month) => {
-            switch (Number(month)) {
-                case 1:
-                    return 'January'
-                case 2:
-                    return 'February'
-                case 3:
-                    return 'March'
-                case 4:
-                    return 'April'
-                case 5:
-                    return 'May'
-                case 6:
-                    return 'June'
-                case 7:
-                    return 'July'
-                case 8:
-                    return 'August'
-                case 9:
-                    return 'September'
-                case 10:
-                    return 'October'
-                case 11:
-                    return 'November'
-                case 12:
-                    return 'December'
-            }
+        // const escapeHtml = (value) => String(value)
+        //     .replaceAll('&', '&amp;')
+        //     .replaceAll('<', '&lt;')
+        //     .replaceAll('>', '&gt;')
+        //     .replaceAll('"', '&quot;')
+        //     .replaceAll("'", '&#39;')
+
+        const renderValuesAsList = (values) => {
+            const items = Array.isArray(values) ? values : [values]
+
+            return `
+                <ul>
+                    ${items.map(item => `<li>${item}</li>`).join('')}
+                </ul>
+            `
+        }
+
+        const formatReleaseDate = (released) => {
+            const releasedDate = new Date(released)
+
+            return releasedDate.toLocaleDateString('de-DE', {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric'
+            })
         }
 
         window.onload = function () {
@@ -71,107 +62,37 @@
                     /* Part 2: Build the HTML elements here and append them to the body */
                     const movies = JSON.parse(xhr.responseText)
                     movies.forEach(movie => {
-                        const moviePoster = document.createElement("img")
-                        moviePoster.src = movie.Poster
-                        moviePoster.className = 'poster'
-
-                        const movieTitle = document.createElement("h1")
-                        movieTitle.innerText = movie.Title
-
-                        const movieParagraph = document.createElement("p")
-                        movieParagraph.innerText = movie.Plot
-
-                        const ul = document.createElement("ul")
-
-                        const runtimeListEntry = document.createElement("li")
-                        const runtimeLabel = document.createElement("label")
-                        const runtimeSpan = document.createElement("span")
-                        runtimeLabel.innerText = "Runtime: "
-                        runtimeListEntry.append(runtimeLabel)
-                        runtimeSpan.innerText = `${movie.Runtime} Minuten`
-                        runtimeListEntry.append(runtimeSpan)
-                        ul.append(runtimeListEntry)
-
-                        const imdbRatingListEntry = document.createElement("li")
-                        const imdbRatingLabel = document.createElement("label")
-                        const imdbRatingSpan = document.createElement("span")
-                        imdbRatingLabel.innerText = "imdbRating: "
-                        imdbRatingListEntry.append(imdbRatingLabel)
-                        imdbRatingSpan.innerText = `${movie.imdbRating}`
-                        imdbRatingListEntry.append(imdbRatingSpan)
-                        ul.append(imdbRatingListEntry)
-
-                        const metascoreListEntry = document.createElement("li")
-                        const metascoreLabel = document.createElement("label")
-                        const metascoreSpan = document.createElement("span")
-                        metascoreLabel.innerText = "Metascore: "
-                        metascoreListEntry.append(metascoreLabel)
-                        metascoreSpan.innerText = `${movie.Metascore}`
-                        metascoreListEntry.append(metascoreSpan)
-                        ul.append(metascoreListEntry)
-
-                        const actorsListEntry = document.createElement("li")
-                        const actorsLabel = document.createElement("label")
-                        const actorsSpan = document.createElement("span")
-                        actorsLabel.innerText = "Actors: "
-                        actorsListEntry.append(actorsLabel)
-                        actorsSpan.innerText = `${movie.Actors}`
-                        actorsListEntry.append(actorsSpan)
-                        ul.append(actorsListEntry)
-
-                        const genresListEntry = document.createElement("li")
-                        const genresLabel = document.createElement("label")
-                        const genresSpan = document.createElement("span")
-                        genresLabel.innerText = "Genres: "
-                        genresListEntry.append(genresLabel)
-                        genresSpan.innerText = `${movie.Genres}`
-                        genresListEntry.append(genresSpan)
-                        ul.append(genresListEntry)
-
-                        const directorsListEntry = document.createElement("li")
-                        const directorsLabel = document.createElement("label")
-                        const directorsSpan = document.createElement("span")
-                        directorsLabel.innerText = "Directors: "
-                        directorsListEntry.append(directorsLabel)
-                        directorsSpan.innerText = `${movie.Directors}`
-                        directorsListEntry.append(directorsSpan)
-                        ul.append(directorsListEntry)
-
-                        const writersListEntry = document.createElement("li")
-                        const writersLabel = document.createElement("label")
-                        const writersSpan = document.createElement("span")
-                        writersLabel.innerText = "Actors: "
-                        writersListEntry.append(writersLabel)
-                        writersSpan.innerText = `${movie.Writers}`
-                        writersListEntry.append(writersSpan)
-                        ul.append(writersListEntry)
-
-                        const releasedListEntry = document.createElement("li")
-                        const releasedLabel = document.createElement("label")
-                        const releasedSpan = document.createElement("span")
-                        releasedLabel.innerText = "Released: "
-                        releasedListEntry.append(releasedLabel)
-                        const releasedDate = new Date(movie.Released)
-                        const day = releasedDate.getDay()
-                        const month = convertMonthToString(releasedDate.getMonth() + 1)
-                        const year = releasedDate.getFullYear()
-                        releasedSpan.innerText = `${day} ${month} ${year}`
-                        releasedListEntry.append(releasedSpan)
-                        ul.append(releasedListEntry)
-
-
-                        const movieArticle = document.createElement("article")
-                        movieArticle.append(movieTitle)
-                        movieArticle.append(moviePoster)
-                        movieArticle.append(movieParagraph)
-                        movieArticle.append(ul)
-                        movieArticle.className = 'movieArticle'
-
-
                         const article = document.createElement("article")
-                        article.append(movieArticle)
                         article.className = 'article'
-
+                        article.innerHTML = `
+                            <article class="movieArticle">
+                                <h1>${movie.Title}</h1>
+                                <img class="poster" src="${movie.Poster}" alt="Poster for ${movie.Title}">
+                                <p>${movie.Plot}</p>
+                                <ul>
+                                    <li><strong>Runtime:</strong> ${movie.Runtime} Minuten</li>
+                                    <li><strong>imdbRating:</strong> ${movie.imdbRating}</li>
+                                    <li><strong>Metascore:</strong> ${movie.Metascore}</li>
+                                    <li>
+                                        <strong>Genres:</strong>
+                                        ${renderValuesAsList(movie.Genres)}
+                                    </li>
+                                    <li>
+                                        <strong>Directors:</strong>
+                                        ${renderValuesAsList(movie.Directors)}
+                                    </li>
+                                    <li>
+                                        <strong>Writers:</strong>
+                                        ${renderValuesAsList(movie.Writers)}
+                                    </li>
+                                    <li>
+                                        <strong>Actors:</strong>
+                                        ${renderValuesAsList(movie.Actors)}
+                                    </li>
+                                    <li><strong>Released:</strong> ${formatReleaseDate(movie.Released)}</li>
+                                </ul>
+                            </article>
+                        `
                         bodyElement.append(article)
                     })
                 } else {
